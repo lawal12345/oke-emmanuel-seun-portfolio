@@ -109,6 +109,20 @@ h1 span {
 .video-label { top: 10px; left: 12px; }
 .video-status { right: 12px; bottom: 8px; color: #ffc900; font-size: 9px; }
 video { display: block; width: 100%; max-height: 390px; min-height: 180px; background: #302c27; object-fit: cover; }
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 3px solid #171512;
+  background: #ffc900;
+  box-shadow: 4px 4px 0 #f2ead4;
+  padding: 12px 15px;
+  color: #171512;
+  cursor: pointer;
+  font: 700 12px 'DM Mono', monospace;
+  transform: translate(-50%, -50%) rotate(-2deg);
+}
+.video-play-button:hover { transform: translate(calc(-50% + 2px), calc(-50% + 2px)) rotate(-2deg); }
 .error-footer {
   display: flex;
   justify-content: space-between;

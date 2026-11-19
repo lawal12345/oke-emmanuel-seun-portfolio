@@ -4,7 +4,16 @@
  * rendered.
  */
 
+import { useRef, useState } from 'react'
+
 export default function MyPortfolio() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [needsPlay, setNeedsPlay] = useState(false)
+
+  function tryAudiblePlayback() {
+    videoRef.current?.play().then(() => setNeedsPlay(false)).catch(() => setNeedsPlay(true))
+  }
+
   return (
     <main className="takeover-page">
       <div className="error-corner error-corner-top" aria-hidden="true">404 / 404 / 404</div>
@@ -24,15 +33,21 @@ export default function MyPortfolio() {
             autoPlay
             controls
             loop
-            muted
             playsInline
             preload="auto"
             src="/take-down.mp4"
             aria-label="Site takeover video"
+            ref={videoRef}
+            onCanPlay={tryAudiblePlayback}
           >
             Your browser does not support embedded video.
           </video>
-          <div className="video-status">AUTOPLAY // MUTED // LOOP</div>
+          {needsPlay && (
+            <button className="video-play-button" type="button" onClick={tryAudiblePlayback}>
+              Tap to play with sound ↗
+            </button>
+          )}
+          <div className="video-status">AUTOPLAY // SOUND ON // LOOP</div>
         </div>
 
         <p className="error-footer">
